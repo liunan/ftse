@@ -66,9 +66,9 @@ function search(query) {
     let grams = query.split(' ');
     let candiates =[];
     for (let keyword of grams) {
-        console.log(keyword);
+        console.log(`q:${keyword}`);
         if (dict[keyword]) {
-            console.log(`${keyword} (${dict[keyword].length})`);
+            //console.log(`${keyword} (${dict[keyword].length})`);
             candiates.push(dict[keyword]);
             //结果在行中的分布情况
             if (false) {
