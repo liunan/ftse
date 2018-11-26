@@ -1,0 +1,17 @@
+{
+  "name": "ctokenizer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tk": "node ./tokenizer.js",
+    "s":"node ./search.js 马岱"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chinese-tokenizer": "^2.0.0"
+  }
+}

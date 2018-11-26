@@ -1,0 +1,4 @@
+node_modules/*
+outidx/*
+package-lock.json
+cedict_ts.u8
