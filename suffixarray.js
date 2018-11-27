@@ -62,18 +62,23 @@ if(true)
     }
     */
     //console.log(JSON.stringify(characterTable));
-    console.log('character count '+Object.keys(characterTable).length);
+    console.log('leading character count '+Object.keys(characterTable).length);
 
-    console.log(process.argv);
+   
     if(process.argv.length>2 )
     {
         // 输出指定字符的索引
         console.log(process.argv[2]);
 
         let suffixs = Object.keys(characterTable[process.argv[2]]);
+        let notOnly = suffixs.filter( (key)=>{
+            return characterTable[process.argv[2]][key]>1;
+        })
+
+        console.log(`notOnly/Total: ${notOnly.length}/${suffixs.length}`)
 
         // 按照出现频率，降序排列，得到单个字的后续排列
-        let sortedSuffix = suffixs.sort((left,right)=>{
+        let sortedSuffix = notOnly.sort((left,right)=>{
             return characterTable[process.argv[2]][right] - characterTable[process.argv[2]][left];
         })
         console.log(JSON.stringify(characterTable[process.argv[2]]) );
