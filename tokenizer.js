@@ -8,7 +8,7 @@ let N_GRAM = 2;
 let TOPN = 30;
 let scannedString = '';
 //let inputTxt = './sample/xyj.txt';
-let inputTxt = 'd:/threekingdom.txt';
+let inputTxt = './sample/threekingdom.txt';
 
 
 //const fs = require('fs');
@@ -50,8 +50,8 @@ function isDelimeter(c) {
 // 首先逐行读入需要检查的内容
 lineReader.on('line', function (line) {
     if (line != '')
-        //console.log('empty line scanned!');
     {
+        let lineIdx = inputLines.length;
         inputLines.push(line);
         //console.log(`${inputLines.length}:${line}`);
         for (let c in line) {
@@ -66,10 +66,10 @@ lineReader.on('line', function (line) {
                 if (scannedString.length == N_GRAM) {
                     if (!dict[scannedString])//如果当前key 没有存储，为其分配一个空的集合
                         dict[scannedString] = [];
+                    let offset = Number(c)+1-N_GRAM;
+                    dict[scannedString].push(lineIdx,offset );//增加当前的行、列号
 
-                    dict[scannedString].push(inputLines.length, c +1 - N_GRAM);//增加当前的行、列号
-
-                    scannedString = scannedString.substr(1);
+                    scannedString = scannedString.substr(1);//去掉首字符
                 }
             }
 
@@ -104,4 +104,6 @@ lineReader.on('close', () => {
 
     const fs = require('fs');
     fs.writeFileSync('./outidx/2-gram.idx','exports.dict = '+JSON.stringify(dict));
+
+    fs.writeFileSync('./outidx/sanguo_lines.js','exports.lines='+JSON.stringify(inputLines));
 })
